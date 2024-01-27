@@ -1,0 +1,45 @@
+﻿@page "/counter"
+@page "/counter/{StartingValue}"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+@if (currentCount > 10) {
+    <p> You win </p>
+} 
+
+<p role = "status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="() => currentCount-=4">Reset Me</button>
+
+<input @onchange='InputChanged'  />
+<p>@message </p>
+
+
+@code {
+    private int currentCount = 0;
+    private int message= 5;
+
+    //Evnet handling for input text
+    public void InputChanged(ChangeEventArgs e){
+        message = (int)e.Value;
+        
+    }
+
+    [Parameter]
+    public int StartingValue { get; set;}  = 1;
+
+    <!-- protected override void onParameterSet(){
+        currentCount = StartingValue;
+    } -->
+
+    [Parameter]
+    public int IncrementAmount { get; set; } = 4;
+
+    private void IncrementCount()
+    {
+        currentCount += IncrementAmount;
+    }
+}
