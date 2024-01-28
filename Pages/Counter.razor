@@ -15,16 +15,22 @@
 <button class="btn btn-primary" @onclick="() => currentCount-=4">Reset Me</button>
 
 <input @onchange='InputChanged'  />
+<input @bind="text" />
+<button @onclick="() => text = string.Empty">Clear</button>
+<p>@text</p>
 <p>@message </p>
+
 
 
 @code {
     private int currentCount = 0;
-    private int message= 5;
+    private string message= "hello";
+    private string text= "hello";
+
 
     //Evnet handling for input text
     public void InputChanged(ChangeEventArgs e){
-        message = (int)e.Value;
+        message = (string)e.Value;
         
     }
 
